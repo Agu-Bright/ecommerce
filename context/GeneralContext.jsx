@@ -5,11 +5,16 @@ export const GeneralContext = createContext();
 
 const GeneralContextProvider = ({ children }) => {
   const [sidebarState, setSidebarState] = useState();
+  const [length, setLength] = useState("0");
+  const [adjustWidth, setAdjustWidth] = useState("300px");
+
   return (
     <GeneralContext.Provider
       value={{
-        sidebarState,
-        setSidebarState,
+        length,
+        setLength,
+        adjustWidth,
+        setAdjustWidth,
       }}
     >
       {children}

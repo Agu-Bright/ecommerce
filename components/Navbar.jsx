@@ -1,8 +1,11 @@
 "use client";
 import("bootstrap/dist/js/bootstrap.bundle.min.js");
 
-import React from "react";
+import { GeneralContext } from "@context/GeneralContext";
+import React, { useContext, useEffect, useState } from "react";
 const Navbar = () => {
+  const { length, setLength, setAdjustWidth } = useContext(GeneralContext);
+
   return (
     <>
       <header
@@ -14,7 +17,13 @@ const Navbar = () => {
             <img src="assets/img/logo.png" alt="" />
             <span className="d-none d-lg-block">NiceAdmin</span>
           </a>
-          <i className="bi bi-list toggle-sidebar-btn"></i>
+          <i
+            className="bi bi-list toggle-sidebar-btn"
+            onClick={() => {
+              setLength((prev) => (prev === "0" ? "-300px" : "0"));
+              setAdjustWidth((prev) => (prev === "300px" ? "0px" : "300px"));
+            }}
+          ></i>
         </div>
 
         <div className="search-bar">
@@ -290,7 +299,7 @@ const Navbar = () => {
           </ul>
         </nav>
       </header>
-      <aside id="sidebar" className="sidebar">
+      <aside id="sidebar" className="sidebar" style={{ left: length }}>
         <ul className="sidebar-nav" id="sidebar-nav">
           <li className="nav-item">
             <a className="nav-link " href="index.html">
